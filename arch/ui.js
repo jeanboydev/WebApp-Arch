@@ -1,6 +1,15 @@
 import config from '../config/config.js';
 
 /**
+ * 打印错误信息
+ * @param {*} res 
+ */
+function printError(tag, res) {
+    console.error("== " + tag + " == res = " + JSON.stringify(res));
+    console.error(res);
+}
+
+/**
  * 显示提示信息
  * @param type:微信(success/loading/none);支付宝(success/fail/exception/none)
  */
@@ -21,6 +30,7 @@ function showToast({
                 onSuccess();
             },
             fail: function (res) {
+                printError("showToast", res);
                 onError(res);
             },
             complete: function (res) {
@@ -36,6 +46,7 @@ function showToast({
                 onSuccess();
             },
             fail: function (res) {
+                printError("showToast", res);
                 onError(res);
             },
             complete: function (res) {
@@ -74,6 +85,7 @@ function showAlert({
                     }
                 },
                 fail: function (res) {
+                    printError("showAlert", res);
                     onError(res);
                 },
                 complete: function (res) {
@@ -90,6 +102,7 @@ function showAlert({
                 onSuccess(res);
             },
             fail: function (res) {
+                printError("showAlert", res);
                 onError(res);
             },
             complete: function (res) {
@@ -111,6 +124,7 @@ function showAlert({
                 }
             },
             fail: function (res) {
+                printError("showAlert", res);
                 onError(res);
             },
             complete: function (res) {
@@ -138,6 +152,7 @@ function showLoading({
                 onSuccess();
             },
             fail: function (res) {
+                printError("showLoading", res);
                 onError(res);
             },
             complete: function (res) {
@@ -152,6 +167,7 @@ function showLoading({
                 onSuccess();
             },
             fail: function (res) {
+                printError("showLoading", res);
                 onError(res);
             },
             complete: function (res) {
@@ -191,6 +207,7 @@ function showActionSheet({
                 onSuccess(res.index);
             },
             fail: function (res) {
+                printError("showActionSheet", res);
                 onError(res);
             },
             complete: function (res) {
@@ -204,6 +221,7 @@ function showActionSheet({
                 onSuccess(res.tapIndex);
             },
             fail: function (res) {
+                printError("showActionSheet", res);
                 onError(res.errMsg);
             },
             complete: function (res) {
