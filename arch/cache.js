@@ -49,11 +49,9 @@ function remove(key) {
  */
 function clear() {
     if (config.isAlipay) {
-        return my.clearStorageSync({
-            key: key
-        });
+        return my.clearStorageSync();
     } else {
-        return wx.clearStorageSync(key);
+        return wx.clearStorageSync();
     }
 }
 

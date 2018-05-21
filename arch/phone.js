@@ -9,11 +9,15 @@ function printError(res) {
     console.error(res);
 }
 
+function getSDKVersion() {
+    return config.isAlipay ? my.SDKVersion : wx.SDKVersion;
+}
+
 /**
  * 获取系统信息
  */
 function getSystemInfo({
-    onSuccess = {}
+    onSuccess = function () {}
 }) {
     if (config.isAlipay) {
         my.getSystemInfo({
@@ -70,7 +74,7 @@ function makePhoneCall(number) {
  */
 function scanCode({
     onlyFromCamera = false,
-    onSuccess = {}
+    onSuccess = function () {}
 }) {
     if (config.isAlipay) {
         my.scan({
@@ -86,7 +90,7 @@ function scanCode({
         wx.scanCode({
             onlyFromCamera: onlyFromCamera,
             success: function (res) {
-                onSuccess(res);
+                onSuccess(res.result);
             },
             fail: function (res) {
                 printError(res);
@@ -99,7 +103,7 @@ function scanCode({
  * 设置系统剪贴板的内容
  */
 function setClipboardData({
-    data,
+    data = '',
     onSuccess = {}
 }) {
     if (config.isAlipay) {
@@ -129,7 +133,7 @@ function setClipboardData({
  * 获取系统剪贴板的内容
  */
 function getClipboardData({
-    onSuccess = {}
+    onSuccess = function () {}
 }) {
     if (config.isAlipay) {
         my.getClipboard({
@@ -161,8 +165,9 @@ function getClipboardData({
  *        3：获取经纬度和详细到POI级别的逆地理编码数据，不推荐使用)
  */
 function getLocation({
-    type,
-    onSuccess = {}
+    type = '',
+    onSuccess = function () {},
+    onError = function () {}
 }) {
     if (config.isAlipay) {
         my.getLocation({
@@ -171,7 +176,7 @@ function getLocation({
                 onSuccess(res);
             },
             fail: function (res) {
-                printError(res);
+                onError(res);
             }
         });
     } else {
@@ -181,7 +186,7 @@ function getLocation({
                 onSuccess(res);
             },
             fail: function (res) {
-                printError(res);
+                onError(res);
             }
         });
     }
@@ -191,12 +196,12 @@ function getLocation({
  * 使用内置地图查看位置。
  */
 function openLocation({
-    latitude,
-    longitude,
-    name,
-    address,
-    scale = 14,
-    onSuccess = {}
+    latitude = 0.0,
+    longitude = 0.0,
+    name = '',
+    address = '',
+    scale = 18,
+    onSuccess = function () {}
 }) {
     if (config.isAlipay) {
         my.openLocation({
@@ -233,14 +238,14 @@ function openLocation({
  * 发起支付。
  */
 function requestPayment({
-    param,
-    onSuccess = {},
-    onCancel = {},
-    onError = {}
+    params = {},
+    onSuccess = function () {},
+    onCancel = function () {},
+    onError = function () {}
 }) {
     if (config.isAlipay) {
         my.tradePay({
-            orderStr: param,
+            orderStr: params,
             success: function (res) {
                 if (res.resultCode === 6001 || res.resultCode === 99) {
                     onCancel();
@@ -258,11 +263,11 @@ function requestPayment({
         });
     } else {
         wx.requestPayment({
-            timeStamp: param.timeStamp,
-            nonceStr: param.nonceStr,
-            package: param.package,
-            signType: 'MD5',
-            paySign: param.paySign,
+            timeStamp: params.time_stamp,
+            nonceStr: params.nonce_str,
+            package: params.package,
+            signType: params.sign_type,
+            paySign: params.pay_sign,
             success: function (res) {
                 onSuccess(res);
             },
@@ -278,6 +283,7 @@ function requestPayment({
 }
 
 module.exports = {
+    getSDKVersion: getSDKVersion,
     getSystemInfo: getSystemInfo,
     getSystemInfoSync: getSystemInfoSync,
     makePhoneCall: makePhoneCall,

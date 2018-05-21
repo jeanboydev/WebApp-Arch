@@ -38,10 +38,16 @@ function navigateTo(url) {
  * 关闭当前页面，返回上一页面或多级页面。
  * @param {*} delta 可通过 getCurrentPages()) 获取当前的页面栈，决定需要返回几层。
  */
-function navigateBack(delta) {
+function navigateBack({
+    delta = 1,
+    onSuccess = function () {}
+}) {
     if (config.isAlipay) {
         my.navigateBack({
             delta: delta,
+            success: function () {
+                onSuccess();
+            },
             fail: function (res) {
                 printError(url, res);
             }
@@ -49,6 +55,9 @@ function navigateBack(delta) {
     } else {
         wx.navigateBack({
             delta: delta,
+            success: function () {
+                onSuccess();
+            },
             fail: function (res) {
                 printError(url, res);
             }

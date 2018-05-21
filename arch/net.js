@@ -6,13 +6,14 @@ import api from '../config/api.js';
  */
 function request({
     method = 'POST',
-    params,
-    onSuccess = {},
-    onError = {}
+    params = {},
+    onSuccess = function () {},
+    onError = function () {}
 }) {
     console.warn("== request ==========>>>>> ");
-    console.warn("== host -->>>>>" + api.host);
-    console.warn("== params -->>>>> " + JSON.stringify(params));
+    // console.warn("== host -->>>>>" + api.host);
+    console.warn("== request params -->>>>> ");
+    console.warn(JSON.stringify(params));
 
     if (config.isAlipay) {
         my.httpRequest({

@@ -15,11 +15,11 @@ function printError(tag, res) {
  */
 function showToast({
     type = 'none',
-    content,
+    content = '',
     duration = 1500,
-    onSuccess = {},
-    onError = {},
-    onComplete = {}
+    onSuccess = function () {},
+    onError = function () {},
+    onComplete = function () {}
 }) {
     if (config.isAlipay) {
         my.showToast({
@@ -60,15 +60,15 @@ function showToast({
  * 警告框
  */
 function showAlert({
-    title,
-    content,
+    title = '',
+    content = '',
     confirmText = '确定',
     cancelText = '取消',
     showCancel = true,
-    onSuccess = {},
-    onCancel = {},
-    onError = {},
-    onComplete = {}
+    onSuccess = function () {},
+    onCancel = function () {},
+    onError = function () {},
+    onComplete = function () {}
 }) {
     if (config.isAlipay) {
         if (showCancel) {
@@ -140,9 +140,9 @@ function showAlert({
 function showLoading({
     content = '加载中...',
     delay = 0,
-    onSuccess = {},
-    onError = {},
-    onComplete = {}
+    onSuccess = function () {},
+    onError = function () {},
+    onComplete = function () {}
 }) {
     if (config.isAlipay) {
         my.showLoading({
@@ -193,9 +193,9 @@ function hideLoading() {
  */
 function showActionSheet({
     itemList = [],
-    onSuccess = {},
-    onError = {},
-    onComplete = {}
+    onSuccess = function () {},
+    onError = function () {},
+    onComplete = function () {}
 }) {
     if (config.isAlipay) {
         my.showActionSheet({
@@ -232,6 +232,22 @@ function showActionSheet({
 }
 
 /**
+ * 设置导航条标题
+ * @param {*} title 
+ */
+function setNavigationBarTitle(title) {
+    if (config.isAlipay) {
+        my.setNavigationBar({
+            title: title
+        });
+    } else {
+        wx.setNavigationBarTitle({
+            title: title
+        });
+    }
+}
+
+/**
  * 在当前页面显示导航条加载动画
  */
 function showNavigationBarLoading() {
@@ -245,7 +261,7 @@ function showNavigationBarLoading() {
 /**
  * 隐藏导航条加载动画。\
  */
-function showNavigationBarLoading() {
+function hideNavigationBarLoading() {
     if (config.isAlipay) {
         my.hideNavigationBarLoading();
     } else {
@@ -259,6 +275,7 @@ module.exports = {
     showLoading: showLoading,
     hideLoading: hideLoading,
     showActionSheet: showActionSheet,
+    setNavigationBarTitle: setNavigationBarTitle,
     showNavigationBarLoading: showNavigationBarLoading,
     hideNavigationBarLoading: hideNavigationBarLoading
 };

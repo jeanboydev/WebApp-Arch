@@ -99,7 +99,6 @@ function formatTimeToPackage(timeStamp) {
 }
 
 module.exports = {
-    formatCouponMoney: formatCouponMoney,
     formatDate: formatDate,
     formatTime: formatTime,
     formatTimeToMinutes: formatTimeToMinutes,

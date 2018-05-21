@@ -1,5 +1,5 @@
 import CryptoJSMin from '../utils/crypto-js.min.js';
-import config from '../arch/cache.js';
+import cache from '../arch/cache.js';
 import api from '../config/api.js';
 
 /**
