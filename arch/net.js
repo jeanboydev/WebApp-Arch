@@ -1,4 +1,5 @@
 import config from '../config/config.js';
+import api from '../config/api.js';
 
 /**
  * 请求网络

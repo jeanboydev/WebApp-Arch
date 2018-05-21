@@ -9,5 +9,5 @@ module.exports = {
     net: net,
     page: page,
     phone: phone,
-    ui: ui,
+    ui: ui
 };

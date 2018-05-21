@@ -1,11 +1,11 @@
 import date from '../utils/date';
 import machine from '../utils/machine';
 import money from '../utils/money';
-import param from '../utils/param';
+import netApi from '../utils/net-api';
 
 module.exports = {
     date: date,
     machine: machine,
     money: money,
-    param: param
+    netApi: netApi
 };
