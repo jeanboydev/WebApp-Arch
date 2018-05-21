@@ -9,6 +9,9 @@ let debugSignature = "xxx"; //测试默认加密秘钥
 module.exports = {
     host: config.isDebug ? debugHost : host,
     signature: config.isDebug ? debugSignature : signature,
+    package: "",
+    version: 1,
+    os: 1, //平台 1-Alipay 2-WeChat 3-Android 4-iOS
     header: {
         'content-type': 'application/x-www-form-urlencoded'
     }
