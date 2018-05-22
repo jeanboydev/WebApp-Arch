@@ -41,7 +41,7 @@ function navigateTo(url) {
 function navigateBack({
     delta = 1,
     onSuccess = function () {}
-}) {
+} = {}) {
     if (config.isAlipay) {
         my.navigateBack({
             delta: delta,
