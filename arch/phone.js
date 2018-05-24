@@ -247,11 +247,11 @@ function requestPayment({
         my.tradePay({
             orderStr: params,
             success: function (res) {
-                if (res.resultCode === 6001 || res.resultCode === 99) {
+                if (res.resultCode === "6001" || res.resultCode === "99") {
                     onCancel();
-                } else if (res.resultCode === 9000) {
+                } else if (res.resultCode === "9000") {
                     onSuccess(res);
-                } else if (res.resultCode === 8000) {
+                } else if (res.resultCode === "8000") {
                     //处理中...
                 } else {
                     onError(res);
@@ -262,17 +262,18 @@ function requestPayment({
             }
         });
     } else {
+        let paramObj = JSON.parse(params);
         wx.requestPayment({
-            timeStamp: params.time_stamp,
-            nonceStr: params.nonce_str,
-            package: params.package,
-            signType: params.sign_type,
-            paySign: params.pay_sign,
+            timeStamp: paramObj.time_stamp,
+            nonceStr: paramObj.nonce_str,
+            package: paramObj.package,
+            signType: paramObj.sign_type,
+            paySign: paramObj.pay_sign,
             success: function (res) {
                 onSuccess(res);
             },
             fail: function (res) {
-                if (res.cancel) {
+                if (res.errMsg && res.errMsg.indexOf("fail cancel") != -1) {
                     onCancel(res);
                     return;
                 }
