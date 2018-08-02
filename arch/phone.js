@@ -282,6 +282,96 @@ function requestPayment({
         });
     }
 }
+/**
+ * 播放音频
+ * @param {*} param0 
+ */
+function playAudio({
+    url = '',
+    autoPlay = false,
+    isLoop = false,
+}) {
+    if (config.isAlipay) {} else {
+        let audioContext = wx.createInnerAudioContext();
+        audioContext.autoplay = autoPlay;
+        audioContext.loop = isLoop;
+        audioContext.src = url;
+        audioContext.onPlay(function () {});
+        audioContext.onError(function (res) {
+            onError(res);
+        });
+        return audioContext;
+    }
+}
+/**
+ * 停止播放音频
+ * @param {*} context 
+ */
+function stopAudio(context) {
+    if (context) {
+        if (config.isAlipay) {} else {
+            context.stop();
+        }
+    }
+}
+
+/**
+ * 检查更新
+ */
+function checkUpdate() {
+    if (config.isAlipay) {} else {
+        //微信检查更新
+        const updateManager = wx.getUpdateManager();
+        updateManager.onCheckForUpdate(function (res) {
+            // 请求完新版本信息的回调
+            console.log("onCheckForUpdate:" + res.hasUpdate);
+        });
+        updateManager.onUpdateReady(function () {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            console.log("onUpdateReady");
+            updateManager.applyUpdate();
+        });
+        updateManager.onUpdateFailed(function () {
+            // 新的版本下载失败
+            console.log("onUpdateFailed");
+        });
+    }
+}
+
+/**
+ * 获取 url 启动的参数
+ * @param {*} options 
+ */
+function getParamsFromUrl(options) {
+    if (config.isAlipay) {
+        if (options && options.query && options.query.qrCode) {
+            return options.query.qrCode;
+        }
+    } else {
+        if (options) {
+            if (options.query && options.query.q) {
+                return decodeURIComponent(options.query.q);
+            } else if (options.q) {
+                return decodeURIComponent(options.q);
+            }
+        }
+    }
+}
+/**
+ * 获取 路径 启动的参数
+ * @param {*} options 
+ */
+function getParamsFromPath(options) {
+    if (config.isAlipay) {
+        if (options) {
+            return options;
+        }
+    } else {
+        if (options) {
+            return options.query ? options.query : options;
+        }
+    }
+}
 
 module.exports = {
     getSDKVersion: getSDKVersion,
@@ -294,4 +384,9 @@ module.exports = {
     getLocation: getLocation,
     openLocation: openLocation,
     requestPayment: requestPayment,
+    playAudio: playAudio,
+    stopAudio: stopAudio,
+    checkUpdate: checkUpdate,
+    getParamsFromUrl: getParamsFromUrl,
+    getParamsFromPath: getParamsFromPath,
 };

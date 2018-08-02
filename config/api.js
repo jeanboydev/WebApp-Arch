@@ -11,8 +11,10 @@ module.exports = {
     signature: config.isDebug ? debugSignature : signature,
     package: "",
     version: 1,
-    os: 1, //平台 1-Alipay 2-WeChat 3-Android 4-iOS
+    os: config.isAlipay ? 2 : 1, //平台 1-WeChat 2-AliPay 
+    payment: config.isAlipay ? 20 : 10, // 三方支付方式 0:不使用 10:微信小程序 20:支付宝小程序
+    paymentNone: 0,
     header: {
         'content-type': 'application/x-www-form-urlencoded'
-    }
-}
+    },
+};

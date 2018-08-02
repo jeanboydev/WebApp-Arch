@@ -93,22 +93,23 @@ function showAlert({
                 }
             });
             return;
+        } else {
+            my.alert({
+                title: title,
+                content: content,
+                buttonText: confirmText,
+                success: function (res) {
+                    onSuccess(res);
+                },
+                fail: function (res) {
+                    printError("showAlert", res);
+                    onError(res);
+                },
+                complete: function (res) {
+                    onComplete(res);
+                }
+            });
         }
-        my.alert({
-            title: title,
-            content: content,
-            buttonText: confirmText,
-            success: function (res) {
-                onSuccess(res);
-            },
-            fail: function (res) {
-                printError("showAlert", res);
-                onError(res);
-            },
-            complete: function (res) {
-                onComplete(res);
-            }
-        });
     } else {
         wx.showModal({
             title: title,
@@ -269,6 +270,20 @@ function hideNavigationBarLoading() {
     }
 }
 
+function setNavigationBarColor(front, background) {
+    if (config.isAlipay) {
+        my.setNavigationBar({
+            frontColor: front,
+            backgroundColor: background
+        });
+    } else {
+        wx.setNavigationBarColor({
+            frontColor: front,
+            backgroundColor: background
+        });
+    }
+}
+
 module.exports = {
     showToast: showToast,
     showAlert: showAlert,
@@ -276,6 +291,7 @@ module.exports = {
     hideLoading: hideLoading,
     showActionSheet: showActionSheet,
     setNavigationBarTitle: setNavigationBarTitle,
+    setNavigationBarColor: setNavigationBarColor,
     showNavigationBarLoading: showNavigationBarLoading,
     hideNavigationBarLoading: hideNavigationBarLoading
 };

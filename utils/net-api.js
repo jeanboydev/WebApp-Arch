@@ -25,42 +25,28 @@ function request({
         params: signParams,
         onSuccess: function (res) {
             console.warn("== api success ==========<<<<< " + cmd);
+
+            if (!res.data) {
+                onError(-1, "响应数据格式不正确，请稍后重试！");
+                return;
+            }
+
+            if (res.statusCode && res.statusCode >= 500) {
+                onError(-1, "服务器出错了，请稍后重试！");
+                return;
+            }
+
             if (res.data.status == 0) {
                 let protocol = param.getDecryptProtocol(res.data.protocol);
                 console.warn("-- api protocol --<<<<<");
                 console.warn(JSON.stringify(protocol));
 
                 onSuccess(protocol);
-            } else if (res.data.status == 104) {
-                ui.hideLoading();
-
-                if (cmd === api.auth.smsSend ||
-                    cmd === api.auth.signInByOpenid ||
-                    cmd === api.auth.signIn ||
-                    cmd === api.auth.signOut ||
-                    cmd === api.auth.ossToken ||
-                    cmd === api.auth.WeChatOauthToken) return;
-
-                if (getApp().globalData.isOpenedLooper) {
-                    getApp().stopLoop();
-                }
-
-                if (getApp().globalData.isInvalid) return;
-                getApp().globalData.isInvalid = true;
-
-                console.error("*** 重新登录弹窗！！！<<<<<< cmd = " + cmd);
-                ui.showAlert({
-                    title: "提示",
-                    content: "该账号在其它设备上登录，请重新登录！",
-                    showCancel: false,
-                    onSuccess: function () {
-                        getApp().clearUserInfo();
-                        page.reLaunch("/pages/sign-in/sign-in");
-                    }
-                });
             } else {
-                onError(res.data.status, res.data.desc);
+                let desc = res.data.desc;
+                onError(res.data.status, desc);
             }
+
         },
         onError: function (status, res) {
             console.error("== api fail ==========###### " + cmd);

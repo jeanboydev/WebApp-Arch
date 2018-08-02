@@ -1,0 +1,8 @@
+<template name="dialog-sheet">
+  <view class="dialog-container" wx:if="{{isSheetDialogShown}}">
+    <view class="overlay {{sheetDialogAnim==1?'overlay-anim-in':''}} {{sheetDialogAnim==2?'overlay-anim-out':''}}" bindtap="hideDialogSheet"></view>
+    <view class="body {{sheetDialogAnim==1?'sheet-dialog-anim-in':''}} {{sheetDialogAnim==2?'sheet-dialog-anim-out':''}}">
+      content
+    </view>
+  </view>
+</template>

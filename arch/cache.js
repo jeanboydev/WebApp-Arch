@@ -63,23 +63,5 @@ module.exports = {
     set: set,
     get: get,
     remove: remove,
-    clear: clear,
-    userKey: {
-        weChatUserInfo: "weChatUserInfo",
-        screenWidth: "screenWidth",
-        screenHeight: "screenHeight",
-        isOpenedLooper: "isOpenedLooper", //当前looper状态
-        gotQuickTips: "gotQuickTips", //读过快洗洗车提示
-        userInfo: "userInfo", //用户信息
-        userToken: "userToken", //用户Token
-        selectedCoupon: "selectedCoupon", //用户选择的代金券
-        currentOrder: "currentOrder", //用户当前未完成订单
-        machineId: "machineId", //上次扫码的机器id
-        machineLatestTime: "machineLatestTime", //上次扫码的时间
-        washServiceLatestNumber: "washServiceLatestNumber", //代洗服务上次车牌号
-        washServiceLatestSite: "washServiceLatestSite", //代洗服务上次洗车点
-        serviceTelNumber: "serviceTelNumber", //客服电话
-        selfOrderCreateTime: "selfOrderCreateTime", //用户自洗订单创建时间
-        selfOrderActionTime: "selfOrderActionTime", //用户自洗订单等待出水时间
-    }
+    clear: clear
 };

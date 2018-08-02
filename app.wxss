@@ -1,0 +1,22 @@
+/**app.wxss**/
+
+page {
+    background-color: #F3F4F6;
+    font-family: PingFangSC-Regular;
+}
+
+::-webkit-input-placeholder,
+.placeholder {
+    /* WebKit browsers */
+    color: #d7d7d7;
+    font-size: 36rpx;
+}
+
+button::after {
+    border: none;
+}
+
+.a-button.a-button-disabled {
+    background-color: #dddddd;
+    color: #bbbbbb;
+}

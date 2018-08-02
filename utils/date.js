@@ -39,23 +39,23 @@ function formatDate(timeStamp, format) {
  * timeStamp => {*}天{*}小时{*}分钟{*}秒
  */
 function formatTime(timeStamp) {
-    var lastTime = timeStamp * 1000;
-    var days = Math.floor(lastTime / (24 * 3600 * 1000)); //天数
+    let lastTime = timeStamp * 1000;
+    let days = Math.floor(lastTime / (24 * 3600 * 1000)); //天数
     lastTime = lastTime % (24 * 3600 * 1000);
-    var hours = Math.floor(lastTime / (3600 * 1000)); //小时数
+    let hours = Math.floor(lastTime / (3600 * 1000)); //小时数
     lastTime = lastTime % (3600 * 1000);
-    var minutes = Math.floor(lastTime / (60 * 1000)); //分钟数
+    let minutes = Math.floor(lastTime / (60 * 1000)); //分钟数
     lastTime = lastTime % (60 * 1000);
-    var seconds = Math.round(lastTime / 1000); //秒数
-    var returnTime = "";
+    let seconds = Math.round(lastTime / 1000); //秒数
+    let returnTime = "";
     if (days > 0) {
-        returnTime += (days >= 10 ? days : "" + days) + "天";
+        returnTime += (days >= 10 ? days : "" + days) + "天 ";
     }
     if (hours > 0) {
-        returnTime += (hours >= 10 ? hours : "" + hours) + "小时";
+        returnTime += (hours >= 10 ? hours : "" + hours) + "小时 ";
     }
     if (minutes > 0) {
-        returnTime += (minutes >= 10 ? minutes : "" + minutes) + "分钟";
+        returnTime += (minutes >= 10 ? minutes : "" + minutes) + "分钟 ";
     }
     if (seconds > 0) {
         returnTime += (seconds >= 10 ? seconds : "" + seconds) + "秒";
@@ -65,13 +65,43 @@ function formatTime(timeStamp) {
     }
     return returnTime;
 }
+/**
+ * 格式化优惠券剩余时间
+ * @param {*} timeStamp 
+ */
+function formatTimeToCoupon(timeStamp) {
+    let nowTime = new Date().getTime();
+    let lastTime = timeStamp * 1000 - nowTime;
+    let days = Math.floor(lastTime / (24 * 3600 * 1000)); //天数
+    lastTime = lastTime % (24 * 3600 * 1000);
+    let hours = Math.floor(lastTime / (3600 * 1000)); //小时数
+    lastTime = lastTime % (3600 * 1000);
+    let minutes = Math.floor(lastTime / (60 * 1000)); //分钟数
+    lastTime = lastTime % (60 * 1000);
+    let value = 0;
+    let unit = '分钟';
+    if (days > 0) {
+        value = days;
+        unit = '天';
+    } else if (hours > 0) {
+        value = hours;
+        unit = '小时';
+    } else if (minutes > 0) {
+        value = minutes;
+        unit = '分钟';
+    }
+    return {
+        value: value,
+        unit: unit
+    };
+}
 
 /** 
  * 格式化时间分钟
  * timeStamp => {*}（分钟）
  */
 function formatTimeToMinutes(timeStamp) {
-    var minutes = Math.floor(timeStamp * 1000 / (60 * 1000)); //分钟数
+    let minutes = Math.floor(timeStamp * 1000 / (60 * 1000)); //分钟数
     return minutes >= 0 ? minutes : 0;
 }
 
@@ -80,12 +110,12 @@ function formatTimeToMinutes(timeStamp) {
  * timeStamp => {*}/天，{*}/小时，{*}/分钟，{*}/秒
  */
 function formatTimeToPackage(timeStamp) {
-    var lastTime = timeStamp * 1000;
-    var days = Math.floor(24 * 3600 * 1000); //天数
-    var hours = Math.floor(3600 * 1000); //小时数
-    var minutes = Math.floor(60 * 1000); //分钟数
-    var seconds = Math.round(1000); //秒数
-    var returnTime = "";
+    let lastTime = timeStamp * 1000;
+    let days = Math.floor(24 * 3600 * 1000); //天数
+    let hours = Math.floor(3600 * 1000); //小时数
+    let minutes = Math.floor(60 * 1000); //分钟数
+    let seconds = Math.round(1000); //秒数
+    let returnTime = "";
     if (days == lastTime) {
         returnTime += "/天";
     } else if (hours == lastTime) {
@@ -101,6 +131,7 @@ function formatTimeToPackage(timeStamp) {
 module.exports = {
     formatDate: formatDate,
     formatTime: formatTime,
+    formatTimeToCoupon: formatTimeToCoupon,
     formatTimeToMinutes: formatTimeToMinutes,
     formatTimeToPackage: formatTimeToPackage
 };

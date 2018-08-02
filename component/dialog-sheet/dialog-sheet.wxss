@@ -1,0 +1,106 @@
+.sheet-dialog-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+}
+
+.sheet-dialog-container .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.sheet-dialog-container .body {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    background-color: #ffffff;
+}
+
+.sheet-dialog-container .body .close {
+    width: 36rpx;
+    height: 36rpx;
+    padding: 24rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-image: url(http://xxx.com/images/icon_close@3x.png);
+    background-size: 36rpx 36rpx;
+    background-repeat: no-repeat;
+    background-position: 24rpx 24rpx;
+}
+
+.sheet-dialog-anim-in {
+    animation-name: sheet-dialog-in;
+    animation-duration: 0.25s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes sheet-dialog-in {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY( 0%);
+    }
+}
+
+.sheet-dialog-anim-out {
+    animation-name: sheet-dialog-out;
+    animation-duration: 0.25s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes sheet-dialog-out {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.overlay-anim-in {
+    animation-name: overlay-in;
+    animation-duration: 0.25s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overlay-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.overlay-anim-out {
+    animation-name: overlay-out;
+    animation-duration: 0.25s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overlay-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

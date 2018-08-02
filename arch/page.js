@@ -136,5 +136,7 @@ module.exports = {
     navigateBack: navigateBack,
     redirectTo: redirectTo,
     reLaunch: reLaunch,
-    switchTab: switchTab
+    switchTab: switchTab,
+    goHome: goHome,
+    goSignIn: goSignIn,
 };

@@ -1,0 +1,15 @@
+<template name="dialog-alert">
+  <view class="alert-dialog-container" wx:if="{{isAlertDialogShown}}">
+    <view class="overlay {{alertDialogAnim==1?'overlay-anim-in':''}} {{alertDialogAnim==2?'overlay-anim-out':''}}"></view>
+    <view class="body {{alertDialogAnim==1?'alert-dialog-anim-in':''}} {{alertDialogAnim==2?'alert-dialog-anim-out':''}}">
+      <view class="panel">
+        <view class="title">标题</view>
+        <view class="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
+      </view>
+      <view class="sheet">
+        <view class="cancel">取消</view>
+        <view class="confirm">确认</view>
+      </view>
+    </view>
+  </view>
+</template>
