@@ -16,7 +16,6 @@ import money from '../utils/money.js';
 import netWrapper from './wrapper/net-wrapper.js';
 import param from './wrapper/param.js';
 import share from '../utils/share.js';
-import coupon from '../utils/coupon.js';
 import position from '../utils/position.js';
 import distance from '../utils/distance.js';
 
@@ -36,7 +35,6 @@ module.exports = {
     net: netWrapper,
     param: param,
     share: share,
-    coupon: coupon,
     cache: cache,
     position: position,
     distance: distance,
