@@ -1,0 +1,159 @@
+.modal-sheet-pay-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+}
+
+.modal-sheet-pay-container .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-sheet-pay-container .body {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+}
+
+.modal-sheet-pay-anim-in {
+    animation-name: modal-sheet-pay-in;
+    animation-duration: 0.3s;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes modal-sheet-pay-in {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY( 0%);
+    }
+}
+
+.modal-sheet-pay-anim-out {
+    animation-name: modal-sheet-pay-out;
+    animation-duration: 0.3s;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes modal-sheet-pay-out {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.overlay-anim-in {
+    animation-name: overlay-in;
+    animation-duration: 0.3s;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overlay-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.overlay-anim-out {
+    animation-name: overlay-out;
+    animation-duration: 0.3s;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overlay-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 弹窗内容 */
+
+.modal-sheet-pay-container .body {
+    width: calc(100% - 40rpx);
+    background-color: #ffffff;
+    box-shadow: 0 -8rpx 20rpx -4rpx rgba(0, 0, 0, 0.30);
+    border-radius: 18rpx 18rpx 0 0;
+    margin: 0 20rpx;
+}
+
+.modal-sheet-pay-container .body .wrapper {
+    padding: 0 38rpx 80rpx;
+    position: relative;
+}
+
+.modal-sheet-pay-container .body .wrapper .btn-closed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100rpx;
+    height: 100rpx;
+    background-image: url(http://f.hemaxiche.com/wechat_smart_cw/images_v2/modal_sheet_pay/ic_modal_closed.png);
+    background-repeat: no-repeat;
+    background-size: 24rpx 24rpx;
+    background-position: center;
+}
+
+.modal-sheet-pay-container .body .wrapper .heading {
+    height: 120rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 28rpx;
+    color: #000000;
+    line-height: 120rpx;
+    border-bottom: solid 2rpx #DEDEDE;
+}
+
+.modal-sheet-pay-container .body .wrapper .item-container {
+    padding: 22rpx 0 60rpx;
+}
+
+.modal-sheet-pay-container .body .wrapper .title {
+    height: 100rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 48rpx;
+    color: #000000;
+    line-height: 100rpx;
+}
+
+.modal-sheet-pay-container .body .wrapper .item {
+    height: 48rpx;
+    font-family: PingFangSC-Light;
+    font-size: 28rpx;
+    color: #616060;
+    line-height: 48rpx;
+}
+
+.modal-sheet-pay-container .body .wrapper .btn-action {
+    height: 114rpx;
+    background-image: linear-gradient(-178deg, #3D7EF5 2%, #146FE0 96%);
+    box-shadow: 0 10rpx 40rpx 0 rgba(39, 106, 222, 0.50);
+    border-radius: 12rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 40rpx;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 114rpx;
+}

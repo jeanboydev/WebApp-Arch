@@ -8,28 +8,32 @@
 
 ```JSON
 |-ProjectName
-    |-arch//基础框架
-        |-arch.js//框架入口，只需要导入这一个 js 即可
-        |-cache.js//缓存相关，封装了 LocalStorage
-        |-net.js//网络相关，封装了 网路请求
-        |-page.js//页面跳转相关，封装了导航操作
-        |-phone.js//设备相关，封装了系统信息，打电话，扫码，剪切板，定位，支付
-        |-ui.js//平台 UI 相关，封装了 Toast，Alert，Loading，ActionSheet，NavigationBar
-    |-config//项目配置
-        |-api.js//项目 API 相关，接口参数配置等
-        |-config.js//项目配置，如：平台判断，LocalStorage 的 key
-    |-pages//页面
+    |-arch // 基础框架
+        |-core
+            |-analytics.js // 事件上报，封装了 reportAnalytics
+            |-cache.js // 缓存相关，封装了 LocalStorage
+            |-net.js // 网络相关，封装了 网路请求
+            |-page.js // 页面跳转相关，封装了导航操作
+            |-phone.js // 设备相关，封装了系统信息，打电话，扫码，剪切板，定位，支付
+            |-ui.js // 平台 UI 相关，封装了 Toast，Alert，Loading，ActionSheet，NavigationBar
+        |-arch.js // 框架入口，只需要导入这一个 js 即可
+    |-config // 项目配置
+        |-api.js // 项目 API 相关，接口参数配置等
+        |-config.js // 项目配置，如：平台判断，LocalStorage 的 key
+    |-images //本地图片资源
+    |-module // 业务模块代码
+    |-pages // 页面
         |-home 
             |-home.acss/wxss
             |-home.axml/wxml
             |-home.js
             |-home.json
-    |-utils//工具类
-        |-crypto-js.min.js//加密工具库（按需添加）
-        |-date.js//常用 Date 操作
-        |-money.js//常用 money 操作
-        |-net-api.js//自定义通用 API 请求方式，如：封装统一头部和响应体
-        |-param.js//参数加密（按需添加）
+    |-utils // 工具类
+        |-crypto-js.min.js // 加密工具库（按需添加）
+        |-date.js // 常用 Date 操作
+        |-money.js // 常用 money 操作
+        |-net-api.js // 自定义通用 API 请求方式，如：封装统一头部和响应体
+        |-param.js // 参数加密（按需添加）
 ```
 
 ## 使用方式
@@ -44,9 +48,9 @@ import arch from '../../arch/arch.js';
 
 ```JS
 //缓存数据
-arch.cache.set(arch.cache.userKey.TestKey, testValue);
+arch.cache.set(arch.cacheKey.TestKey, testValue);
 //获取缓存
-arch.cache.get(arch.cache.userKey.TestKey);
+arch.cache.get(arch.cacheKey.TestKey);
 ```
 
 3. 网络请求
@@ -73,6 +77,7 @@ arch.ui.showToast({
   type: 'success',
   content: '这是 Toast！'
 });
+
 // 弹窗
 arch.ui.showAlert({
     title: "提示标题",
@@ -103,6 +108,7 @@ arch.phone.getLocation({
     });
   }
 });
+
 // 支付
 arch.phone.requestPayment({
   params: payment,

@@ -1,12 +1,12 @@
-import config from '../config/config.js';
+import config from '../../config/config.js';
 
 /**
  * 打印错误信息
  * @param {*} res 
  */
 function printError(url, res) {
-    console.error("== navigateTo == url = " + url);
-    console.error("== navigateTo == res = " + JSON.stringify(res));
+    console.error("== page == url = " + url);
+    console.error("== page == res = " + JSON.stringify(res));
     console.error(res);
 }
 
@@ -40,7 +40,8 @@ function navigateTo(url) {
  */
 function navigateBack({
     delta = 1,
-    onSuccess = function () {}
+    onSuccess = function () { },
+    onFail = function () { }
 } = {}) {
     if (config.isAlipay) {
         my.navigateBack({
@@ -49,6 +50,7 @@ function navigateBack({
                 onSuccess();
             },
             fail: function (res) {
+                onFail();
                 printError(url, res);
             }
         });
@@ -59,6 +61,7 @@ function navigateBack({
                 onSuccess();
             },
             fail: function (res) {
+                onFail();
                 printError(url, res);
             }
         });
@@ -131,6 +134,20 @@ function switchTab(url) {
     }
 }
 
+/**
+ * 封装常用操作
+ */
+function goHome() {
+    switchTab("/pages/home/home");
+}
+/**
+ * 处理启动自动跳转活动页
+ */
+function activityLaunch(path) {
+    config.isAlipay ? reLaunch(path) : navigateTo(path);
+}
+
+
 module.exports = {
     navigateTo: navigateTo,
     navigateBack: navigateBack,
@@ -138,5 +155,5 @@ module.exports = {
     reLaunch: reLaunch,
     switchTab: switchTab,
     goHome: goHome,
-    goSignIn: goSignIn,
+    activityLaunch: activityLaunch,
 };

@@ -1,6 +1,7 @@
-import CryptoJSMin from '../utils/crypto-js.min.js';
-import cache from '../arch/cache.js';
-import api from '../config/api.js';
+import CryptoJSMin from '../../utils/crypto-js.min.js';
+import api from '../../config/api.js';
+import config from '../../config/config.js';
+import cache from '../core/cache.js';
 
 /**
  * rc4 Base64
@@ -34,14 +35,14 @@ function getSignParams(cmd, params) {
     params.version = api.version;
     params.os = api.os;
     try {
-        let userInfo = cache.get(cache.userKey.userInfo);
+        let userInfo = cache.get(config.cacheKey.userInfo);
         if (userInfo && userInfo.uid != 0) {
             uid = userInfo.uid;
             if (userInfo.sid) {
                 sid = userInfo.sid;
             }
         }
-    } catch (e) {}
+    } catch (e) { }
     if (cmd === api.auth.smsSend ||
         cmd === api.auth.signInByOpenid ||
         cmd === api.auth.signIn ||
@@ -76,14 +77,14 @@ function getSignParams(cmd, params) {
 function getDecryptProtocol(protocol) {
     let sid = api.signature;
     try {
-        let userInfo = cache.get(cache.userKey.userInfo);
+        let userInfo = cache.get(config.cacheKey.userInfo);
         if (userInfo && userInfo.uid != 0) {
             if (userInfo.sid) {
                 sid = userInfo.sid;
             }
         }
         protocol = JSON.parse(CryptoJSMin.RC4.decrypt(protocol, CryptoJSMin.enc.Utf8.parse(sid)).toString(CryptoJSMin.enc.Utf8));
-    } catch (e) {}
+    } catch (e) { }
     return protocol;
 }
 

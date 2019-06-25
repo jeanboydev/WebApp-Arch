@@ -66,10 +66,76 @@ function formatTime(timeStamp) {
     return returnTime;
 }
 /**
+ * 格式化倒计时时间
+ * timeStamp => {*}小时{*}分钟{*}秒
+ */
+function formatTimeToCountDown(timeStamp) {
+    let lastTime = timeStamp * 1000;
+    let hours = Math.floor(lastTime / (3600 * 1000)); //小时数
+    lastTime = lastTime % (3600 * 1000);
+    let minutes = Math.floor(lastTime / (60 * 1000)); //分钟数
+    lastTime = lastTime % (60 * 1000);
+    let seconds = Math.round(lastTime / 1000); //秒数
+    let returnHours = "00";
+    let returnMinutes = "00";
+    let returnSeconds = "00";
+    if (hours > 0) {
+        returnHours = (hours >= 10 ? hours : "0" + hours);
+    }
+    if (minutes > 0) {
+        returnMinutes = (minutes >= 10 ? minutes : "0" + minutes);
+    }
+    if (seconds > 0) {
+        returnSeconds = (seconds >= 10 ? seconds : "0" + seconds);
+    }
+    return {
+        hours: returnHours,
+        minutes: returnMinutes,
+        seconds: returnSeconds
+    };
+}
+
+/**
+ * 格式化倒计时时间
+ * timeStamp => {*}天{*}小时{*}分钟
+ */
+function formatTimeToDayCountDown(timeStamp) {
+    let lastTime = timeStamp * 1000;
+    let days = Math.floor(lastTime / (24 * 3600 * 1000)); //天数
+    lastTime = lastTime % (24 * 3600 * 1000);
+    let hours = Math.floor(lastTime / (3600 * 1000)); //小时数
+    lastTime = lastTime % (3600 * 1000);
+    let minutes = Math.floor(lastTime / (60 * 1000)); //分钟数
+    lastTime = lastTime % (60 * 1000);
+    let seconds = Math.round(lastTime / 1000); //秒数
+    let returnDays = "00";
+    let returnHours = "00";
+    let returnMinutes = "00";
+    let returnSeconds = "00";
+    if (days > 0) {
+        returnDays = (days >= 10 ? days : "0" + days);
+    }
+    if (hours > 0) {
+        returnHours = (hours >= 10 ? hours : "0" + hours);
+    }
+    if (minutes > 0) {
+        returnMinutes = (minutes >= 10 ? minutes : "0" + minutes);
+    }
+    if (seconds > 0) {
+        returnSeconds = (seconds >= 10 ? seconds : "0" + seconds);
+    }
+    return {
+        days: returnDays,
+        hours: returnHours,
+        minutes: returnMinutes,
+        seconds: returnSeconds
+    };
+}
+/**
  * 格式化优惠券剩余时间
  * @param {*} timeStamp 
  */
-function formatTimeToCoupon(timeStamp) {
+function formatTimeToLast(timeStamp) {
     let nowTime = new Date().getTime();
     let lastTime = timeStamp * 1000 - nowTime;
     let days = Math.floor(lastTime / (24 * 3600 * 1000)); //天数
@@ -131,7 +197,9 @@ function formatTimeToPackage(timeStamp) {
 module.exports = {
     formatDate: formatDate,
     formatTime: formatTime,
-    formatTimeToCoupon: formatTimeToCoupon,
+    formatTimeToCountDown: formatTimeToCountDown,
+    formatTimeToDayCountDown: formatTimeToDayCountDown,
+    formatTimeToLast: formatTimeToLast,
     formatTimeToMinutes: formatTimeToMinutes,
     formatTimeToPackage: formatTimeToPackage
 };

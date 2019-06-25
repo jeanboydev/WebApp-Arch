@@ -1,5 +1,0 @@
-<template name="common-button">
-  <button hover-class="btn-hover" bindtap="{{onClick}}" disabled="{{disabled}}" class="btn {{disabled ? 'btn-disabled' : 'btn-normal'}}">
-    {{title}}
-  </button>
-</template>

@@ -1,4 +1,4 @@
-import config from '../config/config.js';
+import config from '../../config/config.js';
 
 /**
  * 打印错误信息
@@ -17,9 +17,9 @@ function showToast({
     type = 'none',
     content = '',
     duration = 1500,
-    onSuccess = function () {},
-    onError = function () {},
-    onComplete = function () {}
+    onSuccess = function () { },
+    onError = function () { },
+    onComplete = function () { }
 }) {
     if (config.isAlipay) {
         my.showToast({
@@ -65,10 +65,10 @@ function showAlert({
     confirmText = '确定',
     cancelText = '取消',
     showCancel = true,
-    onSuccess = function () {},
-    onCancel = function () {},
-    onError = function () {},
-    onComplete = function () {}
+    onSuccess = function () { },
+    onCancel = function () { },
+    onError = function () { },
+    onComplete = function () { }
 }) {
     if (config.isAlipay) {
         if (showCancel) {
@@ -141,9 +141,9 @@ function showAlert({
 function showLoading({
     content = '加载中...',
     delay = 0,
-    onSuccess = function () {},
-    onError = function () {},
-    onComplete = function () {}
+    onSuccess = function () { },
+    onError = function () { },
+    onComplete = function () { }
 }) {
     if (config.isAlipay) {
         my.showLoading({
@@ -194,9 +194,9 @@ function hideLoading() {
  */
 function showActionSheet({
     itemList = [],
-    onSuccess = function () {},
-    onError = function () {},
-    onComplete = function () {}
+    onSuccess = function () { },
+    onError = function () { },
+    onComplete = function () { }
 }) {
     if (config.isAlipay) {
         my.showActionSheet({
@@ -260,7 +260,7 @@ function showNavigationBarLoading() {
 }
 
 /**
- * 隐藏导航条加载动画。\
+ * 隐藏导航条加载动画。
  */
 function hideNavigationBarLoading() {
     if (config.isAlipay) {
@@ -277,10 +277,12 @@ function setNavigationBarColor(front, background) {
             backgroundColor: background
         });
     } else {
-        wx.setNavigationBarColor({
-            frontColor: front,
-            backgroundColor: background
-        });
+        if (wx.setNavigationBarColor) {
+            wx.setNavigationBarColor({
+                frontColor: front,
+                backgroundColor: background
+            });
+        }
     }
 }
 

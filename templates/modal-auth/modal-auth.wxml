@@ -1,0 +1,20 @@
+<template name="modal-auth">
+    <view class="modal-auth-container" wx:if="{{isShown}}">
+        <view class="overlay {{modalAnim==1?'overlay-anim-in':''}} {{modalAnim==2?'overlay-anim-out':''}}"></view>
+        <view class="body {{modalAnim==1?'modal-auth-anim-in':''}} {{modalAnim==2?'modal-auth-anim-out':''}}">
+            <view class="container">
+                <view class="content">
+                    <view class="logo"></view>
+                    <view class="name"></view>
+                    <button class="btn-aciton" bindtap="toGetAuthUserInfo" wx:if="{{isAlipay}}">
+                        {{platform}}授权登录
+                    </button>
+                    <button class="btn-aciton" open-type="getUserInfo" bindgetuserinfo="onGetAuthUserInfo" wx:else>
+                        {{platform}}授权登录
+                    </button>
+                </view>
+                <view class="btn-close" wx:if="{{isCanClosed}}" bindtap="{{onHideClick}}"></view>
+            </view>
+        </view>
+    </view>
+</template>

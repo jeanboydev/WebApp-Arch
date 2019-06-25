@@ -1,4 +1,4 @@
-import config from '../config/config.js';
+import config from '../../config/config.js';
 
 /**
  * 保存数据
@@ -63,5 +63,5 @@ module.exports = {
     set: set,
     get: get,
     remove: remove,
-    clear: clear
+    clear: clear,
 };

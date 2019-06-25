@@ -1,0 +1,162 @@
+.modal-auth-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+}
+
+.modal-auth-container .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-auth-container .body {
+    min-width: 100rpx;
+    min-height: 100rpx;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+}
+
+/* 动画 */
+
+.modal-auth-anim-in {
+    animation-name: modal-auth-in;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes modal-auth-in {
+    0% {
+        transform: translate(-50%, 100%);
+    }
+    100% {
+        transform: translate(-50%, -55%);
+    }
+}
+
+.modal-auth-anim-out {
+    animation-name: modal-auth-out;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes modal-auth-out {
+    0% {
+        transform: translate(-50%, -55%);
+    }
+    100% {
+        transform: translate(-50%, 100%);
+    }
+}
+
+.overlay-anim-in {
+    animation-name: overlay-in;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overlay-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.overlay-anim-out {
+    animation-name: overlay-out;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overlay-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 弹窗内容 */
+
+.modal-auth-container .container {
+    width: 538rpx;
+    height: 538rpx;
+    position: relative;
+}
+
+.modal-auth-container .container .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 80rpx 50rpx 60rpx;
+    background-color: #FFFFFF;
+    box-shadow: 0 4rpx 30rpx 0 rgba(0, 0, 0, 0.50);
+    border-radius: 18rpx;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.modal-auth-container .container .content .logo {
+    width: 140rpx;
+    height: 140rpx;
+    background-image: url(http://f.hemaxiche.com/wechat_smart_cw/images_v3/modal/auth/ic_logo.png);
+    background-repeat: no-repeat;
+    background-size: 140rpx 140rpx;
+}
+
+.modal-auth-container .container .content .name {
+    width: 140rpx;
+    height: 37rpx;
+    background-image: url(http://f.hemaxiche.com/wechat_smart_cw/images_v3/modal/auth/text_app_name.png);
+    background-repeat: no-repeat;
+    background-size: 140rpx 37rpx;
+    margin-top: 24rpx;
+}
+
+.modal-auth-container .container .content .btn-aciton {
+    width: 440rpx;
+    height: 80rpx;
+    background-image: linear-gradient(-178deg, #00E06D 2%, #04C360 96%);
+    box-shadow: 0 10rpx 40rpx 0 rgba(58, 255, 159, 0.70);
+    border-radius: 12rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+    color: #FFFFFF;
+    line-height: 80rpx;
+    text-align: center;
+    margin-top: 80rpx;
+}
+
+.modal-auth-container .container .btn-close {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    width: 60rpx;
+    height: 60rpx;
+    background-image: url(http://f.hemaxiche.com/wechat_smart_cw/images_v3/modal/auth/bg_closed.png);
+    background-repeat: no-repeat;
+    background-size: 24rpx 24rpx;
+    background-position: center;
+}

@@ -1,5 +1,5 @@
-import config from '../config/config.js';
-import api from '../config/api.js';
+import config from '../../config/config.js';
+import api from '../../config/api.js';
 
 /**
  * 请求网络
@@ -7,8 +7,8 @@ import api from '../config/api.js';
 function request({
     method = 'POST',
     params = {},
-    onSuccess = function () {},
-    onError = function () {}
+    onSuccess = function () { },
+    onError = function () { }
 }) {
     console.warn("== request ==========>>>>> ");
     // console.warn("== host -->>>>>" + api.host);

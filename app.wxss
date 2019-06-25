@@ -1,18 +1,68 @@
-/**app.wxss**/
+/** app.wxss **/
+
+page, view, scroll-view, swiper, icon, text, progress, button, checkbox, form, input, label, picker, picker-view, radio, slider, switch, textarea, navigator, image, map, canvas, web-view, cover-view {
+    box-sizing: border-box;
+}
+
+/* 默认页面背景颜色 */
 
 page {
-    background-color: #F3F4F6;
+    background-color: #ffffff;
     font-family: PingFangSC-Regular;
 }
 
-::-webkit-input-placeholder,
-.placeholder {
+/* 默认 input placeholder 样式 */
+
+::-webkit-input-placeholder, .placeholder {
     /* WebKit browsers */
     color: #d7d7d7;
     font-size: 36rpx;
 }
 
+/* 超出文本自动省略号 */
+
+.auto-hidden {
+    /** 隐藏超出的内容 **/
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    /** 对象作为伸缩盒子模型显示 **/
+    display: -webkit-box;
+    /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-box-orient: vertical;
+    /** 显示的行数 **/
+    -webkit-line-clamp: 1;
+}
+
+/* 重置微信 按钮样式 */
+
+button {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    border: none;
+    line-height: normal;
+}
+
+.button-hover {
+    background-color: transparent;
+    border: none;
+}
+
 button::after {
+    background-color: transparent;
+    border: none;
+}
+
+/* 重置支付宝 按钮样式 */
+
+.a-button {
+    background-color: transparent;
+    border: none;
+}
+
+.a-button.a-button-active {
+    background-color: transparent;
     border: none;
 }
 

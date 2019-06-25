@@ -1,0 +1,27 @@
+<template name="modal-sheet-pay">
+    <view class="modal-sheet-pay-container" wx:if="{{isShown}}">
+        <view class="overlay {{anim==1?'overlay-anim-in':''}} {{anim==2?'overlay-anim-out':''}}"
+            bindtap="hideModalSheetPay"></view>
+        <view class="body {{anim==1?'modal-sheet-pay-anim-in':''}} {{anim==2?'modal-sheet-pay-anim-out':''}}">
+            <view class="wrapper">
+                <view class="btn-closed" bindtap="hideModalSheetPay"></view>
+                <view class="heading">已选择：{{modalInfo.heading}}</view>
+                <view class="item-container">
+                    <view class="title">实际付款：{{modalInfo.final.format}}元</view>
+                    <view class="item">总金额：{{modalInfo.total.format}}元</view>
+                    <view class="item" wx:if="{{modalInfo.discount.value>0}}">已优惠：{{modalInfo.discount.format}}元</view>
+                    <view class="item" wx:if="{{modalInfo.account.value>0}}">余额抵扣：{{modalInfo.account.format}}元</view>
+                </view>
+                <button class="btn-action" formType="submit" wx:if="{{modalInfo.isUserOnline}}">立即付款</button>
+                <block wx:else>
+                    <button class="btn-action" bindtap="toGetAuthUserInfo" wx:if="{{modalInfo.isAlipay}}">
+                        {{modalInfo.platform}}登录并付款
+                    </button>
+                    <button class="btn-action" open-type="getUserInfo" bindgetuserinfo="onGetAuthUserInfo" wx:else>
+                        {{modalInfo.platform}}登录并付款
+                    </button>
+                </block>
+            </view>
+        </view>
+    </view>
+</template>

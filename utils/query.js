@@ -17,27 +17,6 @@ function getParam(url, key) {
     return (context == null || context == "" || context == "undefined") ? "" : context;
 }
 
-/**
- * 通过二维码内容获取机器Id
- */
-
-function getPromoterId(url) {
-    let key = "promoterId";
-    return getParam(url, key);
-}
-
-function getMachineId(url) {
-    let key = "mid";
-    return getParam(url, key);
-}
-
-function getChannelId(url) {
-    let key = "channel_id";
-    return getParam(url, key);
-}
-
 module.exports = {
-    getMachineId: getMachineId,
-    getChannelId: getChannelId,
-    getPromoterId: getPromoterId
+    getParam: getParam,
 };

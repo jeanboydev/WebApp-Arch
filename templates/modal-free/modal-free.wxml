@@ -1,0 +1,11 @@
+<template name="modal-free">
+    <view class="modal-free-container" wx:if="{{isShown}}">
+        <view class="overlay {{modalAnim==1?'overlay-anim-in':''}} {{modalAnim==2?'overlay-anim-out':''}}"></view>
+        <view class="body {{modalAnim==1?'modal-free-anim-in':''}} {{modalAnim==2?'modal-free-anim-out':''}}">
+            <view class="container">
+                <button class="action" open-type="share"></button>
+                <view class="btn-close" bindtap="{{onHideClick}}"></view>
+            </view>
+        </view>
+    </view>
+</template>
